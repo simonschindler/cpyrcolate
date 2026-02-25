@@ -1,9 +1,3 @@
-This is a huge milestone! Moving from a collection of scripts to a properly structured, compiled Python package is a massive step up in your development workflow.
-
-Here is a comprehensive and professional `README.md` that explains exactly what `cpyrcolate` does, how to install it (with and without the dev tools), and how to use the API we just built.
-
----
-
 # cpyrcolate
 
 **cpyrcolate** is a high-performance Python package for computing bond percolation statistics on general graphs. It relies on a highly optimized C backend (via Cython) implementing the fast Monte Carlo algorithm by Newman and Ziff.
