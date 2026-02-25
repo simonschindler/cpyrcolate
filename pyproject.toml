@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel", "Cython", "numpy"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cpyrcolate"
+version = "0.1.0"
+description = "High-performance bond percolation for general graphs via the newman ziff algorithm"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "numpy",
+    "networkx"
+]
