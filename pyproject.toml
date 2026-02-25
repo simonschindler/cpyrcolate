@@ -5,10 +5,20 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "cpyrcolate"
 version = "0.1.0"
-description = "High-performance bond percolation for general graphs via the newman ziff algorithm"
+description = "High-performance bond percolation for general graphs"
 readme = "README.md"
 requires-python = ">=3.8"
+
+# THESE are required for the package to function (used in core.py)
 dependencies = [
     "numpy",
-    "networkx"
+    "scipy"  
+]
+
+# THESE are optional extras for development and testing
+[project.optional-dependencies]
+dev = [
+    "networkx",
+    "matplotlib",
+    "pytest"
 ]
