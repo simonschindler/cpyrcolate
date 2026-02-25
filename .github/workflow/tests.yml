@@ -1,0 +1,37 @@
+name: Tests
+
+# Trigger the workflow on pushes and pull requests to the main branch
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build-and-test:
+    name: Run Pytest
+    # Use Ubuntu as it is the fastest and cheapest (free) GitHub runner
+    runs-on: ubuntu-latest 
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11" # You can change this to 3.10 or 3.12 if you prefer
+
+      - name: Install package and dependencies
+        # This triggers the C compiler (gcc) natively available on the Ubuntu runner
+        # and installs networkx, matplotlib, and pytest from your dev group
+        run: uv sync --extra dev
+
+      - name: Run tests
+        # Runs the pytest suite against the freshly compiled Cython backend
+        run: uv run pytest
