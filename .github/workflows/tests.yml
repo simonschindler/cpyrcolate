@@ -40,7 +40,7 @@ jobs:
         
       - name: Generate percolation plot
         # Runs the script to generate er_percolation_plot.png
-        run: uv run percolate_random_graph.py
+        run: uv run tests/percolate_random_graph.py
         
       - name: Store plot as a downloadable artifact
         uses: actions/upload-artifact@v4
