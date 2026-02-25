@@ -7,6 +7,12 @@
 
 Unlike traditional grid-based percolation solvers, `cpyrcolate` operates directly on generic NumPy edge lists, making it ideal for studying complex spatial networks, geometric graphs (like Delaunay or k-NN graphs), and arbitrary network topologies.
 
+## Validation
+
+The underlying C-backend exactly reproduces the analytical solution for percolation on an Erdős–Rényi random graph. This plot is automatically generated and verified during every test run:
+
+![Erdős-Rényi Percolation Plot](er_percolation_plot.png)
+
 ## Features
 
 * **Blazing Fast Backend:** The core Union-Find logic is written in pure C, completely bypassing Python's `for`-loop overhead.
