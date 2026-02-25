@@ -1,5 +1,8 @@
 # cpyrcolate
 
+![Version](https://img.shields.io/badge/version-0.1.0-blue)
+[![Tests](https://github.com/simonschindler/cpyrcolate/actions/workflows/tests.yml/badge.svg)](https://github.com/simonschindler/cpyrcolate/actions/workflows/tests.yml)
+
 **cpyrcolate** is a high-performance Python package for computing bond percolation statistics on general graphs. It relies on a highly optimized C backend (via Cython) implementing the fast Monte Carlo algorithm by Newman and Ziff.
 
 Unlike traditional grid-based percolation solvers, `cpyrcolate` operates directly on generic NumPy edge lists, making it ideal for studying complex spatial networks, geometric graphs (like Delaunay or k-NN graphs), and arbitrary network topologies.
@@ -116,14 +119,9 @@ print("Probability of Spanning:", stats['spanning_cluster'])
 * `percolate_cy.pyx`: The Cython wrapper handling memory views.
 * `core.py`: The Python API handling data prep and canonical math.
 
-
 * `tests/`: Testing scripts for both the C-backend and the final Python API.
 * Use `make` inside the tests directory to quickly compile and verify the pure C code.
-
-
 
 ## Acknowledgements
 
 The core Union-Find algorithm implemented in C is based on the fast Monte Carlo algorithm proposed by M. E. J. Newman and R. M. Ziff (2001).
-
-

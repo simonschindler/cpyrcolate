@@ -76,4 +76,7 @@ if __name__ == "__main__":
     plt.grid(True, linestyle="--", alpha=0.6)
 
     plt.tight_layout()
-    plt.show()
+    # plt.show()
+    # Save the plot for GitHub Actions instead of displaying it interactively
+    plt.savefig("er_percolation_plot.png", dpi=300, bbox_inches="tight")
+    print("Plot successfully saved to er_percolation_plot.png")

@@ -1,21 +1,26 @@
 name: Tests
 
-# Trigger the workflow on pushes and pull requests to the main branch
 on:
   push:
     branches: [ "main", "master" ]
   pull_request:
     branches: [ "main", "master" ]
 
+# Grant the action permission to commit the image back to the repository
+permissions:
+  contents: write
+
 jobs:
   build-and-test:
     name: Run Pytest
-    # Use Ubuntu as it is the fastest and cheapest (free) GitHub runner
     runs-on: ubuntu-latest 
 
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
+        with:
+          # Required for the auto-commit action to work properly
+          ref: ${{ github.head_ref }}
 
       - name: Install uv
         uses: astral-sh/setup-uv@v5
@@ -25,13 +30,27 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11" # You can change this to 3.10 or 3.12 if you prefer
+          python-version: "3.11" 
 
       - name: Install package and dependencies
-        # This triggers the C compiler (gcc) natively available on the Ubuntu runner
-        # and installs networkx, matplotlib, and pytest from your dev group
         run: uv sync --extra dev
 
       - name: Run tests
-        # Runs the pytest suite against the freshly compiled Cython backend
         run: uv run pytest
+        
+      - name: Generate percolation plot
+        # Runs the script to generate er_percolation_plot.png
+        run: uv run percolate_random_graph.py
+        
+      - name: Store plot as a downloadable artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: percolation-plot
+          path: er_percolation_plot.png
+          
+      - name: Commit plot to repository
+        # This action automatically commits the image if it has changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto-update percolation plot"
+          file_pattern: "er_percolation_plot.png"
