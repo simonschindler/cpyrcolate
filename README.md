@@ -22,14 +22,27 @@ The underlying C-backend exactly reproduces the analytical solution for percolat
 
 ## Installation
 
-### Standard Installation
+### Install directly from GitHub
 
-If you just want to use the package in another project, you can install it directly. This will only install the core dependencies (`numpy` and `scipy`).
+If you just want to use the package in another project, you can install it directly from the GitHub repository. This will only install the core dependencies (`numpy` and `scipy`).
 
 ```bash
-pip install .
-# or using uv:
+# using uv (recommended):
+uv pip install git+[https://github.com/simonschindler/cpyrcolate.git](https://github.com/simonschindler/cpyrcolate.git)
+
+# or using standard pip:
+pip install git+[https://github.com/simonschindler/cpyrcolate.git](https://github.com/simonschindler/cpyrcolate.git)
+
+```
+
+### Install from Source (Local Clone)
+
+If you have cloned the repository locally, you can install it from the root directory:
+
+```bash
 uv pip install .
+# or using standard pip:
+pip install .
 
 ```
 
