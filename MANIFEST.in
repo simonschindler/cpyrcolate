@@ -1,0 +1,3 @@
+include src/cpyrcolate/*.pyx
+include src/cpyrcolate/*.c
+include src/cpyrcolate/*.h

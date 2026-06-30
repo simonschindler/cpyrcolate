@@ -1,25 +1,21 @@
 from setuptools import setup, Extension, find_packages
-from Cython.Build import cythonize
 import numpy as np
-import os
-
-# Define the path to the C/Cython files
-source_dir = os.path.join("src", "cpyrcolate")
 
 ext_modules = [
     Extension(
-        "cpyrcolate.percolate_cy",  # The importable compiled module
+        "cpyrcolate.percolate_cy",
         sources=[
-            os.path.join(source_dir, "percolate_cy.pyx"),
-            os.path.join(source_dir, "percolate_core.c"),
+            "src/cpyrcolate/percolate_cy.c",
+            "src/cpyrcolate/percolate_core.c",
         ],
-        include_dirs=[np.get_include(), source_dir],
-        extra_compile_args=["-O3"],  # Max C optimization
+        include_dirs=[np.get_include(), "src/cpyrcolate"],
+        extra_compile_args=["-O3"],
     )
 ]
 
 setup(
     packages=find_packages(where="src"),
     package_dir={"": "src"},
-    ext_modules=cythonize(ext_modules, compiler_directives={"language_level": "3"}),
+    ext_modules=ext_modules,
+    include_package_data=True,
 )
