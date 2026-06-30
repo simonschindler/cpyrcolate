@@ -1,6 +1,6 @@
 # cpyrcolate
 
-![Version](https://img.shields.io/badge/version-0.1.0-blue)
+[![PyPI version](https://img.shields.io/pypi/v/cpyrcolate.svg)](https://pypi.org/project/cpyrcolate/)
 [![Tests](https://github.com/simonschindler/cpyrcolate/actions/workflows/tests.yml/badge.svg)](https://github.com/simonschindler/cpyrcolate/actions/workflows/tests.yml)
 
 **cpyrcolate** is a high-performance Python package for computing bond percolation statistics on general graphs. It relies on a highly optimized C backend (via Cython) implementing the fast Monte Carlo algorithm by Newman and Ziff.
@@ -22,12 +22,27 @@ The underlying C-backend exactly reproduces the analytical solution for percolat
 
 ## Installation
 
-### Install directly from GitHub
+### Install from PyPI (Recommended)
 
-If you just want to use the package in another project, you can install it directly from the GitHub repository. This will only install the core dependencies (`numpy` and `scipy`).
+The easiest way to install `cpyrcolate` is directly from the Python Package Index (PyPI). Because pre-compiled wheels are provided, you do not need a C compiler to install it this way.
 
 ```bash
 # using uv (recommended):
+uv add cpyrcolate
+# or if using uv's pip interface:
+uv pip install cpyrcolate
+
+# or using standard pip:
+pip install cpyrcolate
+
+```
+
+### Install directly from GitHub
+
+If you want the absolute latest unreleased version, you can install it directly from the GitHub repository.
+
+```bash
+# using uv:
 uv pip install git+[https://github.com/simonschindler/cpyrcolate.git](https://github.com/simonschindler/cpyrcolate.git)
 
 # or using standard pip:
@@ -35,29 +50,24 @@ pip install git+[https://github.com/simonschindler/cpyrcolate.git](https://githu
 
 ```
 
-### Install from Source (Local Clone)
-
-If you have cloned the repository locally, you can install it from the root directory:
-
-```bash
-uv pip install .
-# or using standard pip:
-pip install .
-
-```
-
 ### Development Installation
 
-If you are modifying the C/Cython code or want to run the tests and visualization scripts, you should install it in "editable" mode with the `dev` optional dependencies (`networkx`, `matplotlib`, `pytest`).
+If you are modifying the C/Cython code or want to run the tests and visualization scripts, you should clone the repository and install it in "editable" mode with the `dev` optional dependencies (`networkx`, `matplotlib`, `pytest`).
 
 ```bash
+git clone [https://github.com/simonschindler/cpyrcolate.git](https://github.com/simonschindler/cpyrcolate.git)
+cd cpyrcolate
+
+# using uv:
 uv sync --extra dev
+
 # or using standard pip:
 pip install -e ".[dev]"
 
 ```
 
-*Note: Because this package contains C extensions, you need a functioning C compiler (like `gcc` or `clang`) installed on your system.*
+*Note: Because installing from source compiles the C extensions locally, you need a functioning C compiler (like `gcc` or `clang`) installed on your system if you use the GitHub or Development installation methods.*
+
 
 ## Quickstart & Usage
 
